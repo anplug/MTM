@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using Midi;
 
 namespace Music_Turing_Machine
 {
@@ -12,6 +12,7 @@ namespace Music_Turing_Machine
         private List<Char> source;
         private List<Sound> tape;
         private int current;
+        private OutputDevice outputDevice;
 
         private const int tapeSize = 10;
 
@@ -27,19 +28,24 @@ namespace Music_Turing_Machine
 
         private RuntimeEnvironment()
         {
-            initiateEnvironment();
+            InitiateEnvironment();
         }
-        private void initiateEnvironment()
+        private void InitiateEnvironment()
         {
             source = new List<Char>();
             tape = new List<Sound>();
+
+            outputDevice = OutputDevice.InstalledDevices[0];
+            if (outputDevice.IsOpen) outputDevice.Close();
+            outputDevice.Open();
+
             for (int i = 0; i < tapeSize; i++)
             {
                 tape.Add(new Pause(Sound.DEFAULT_DUR));
             }
             current = 0;
         }
-        public static RuntimeEnvironment getInstance()
+        public static RuntimeEnvironment GetInstance()
         {
             if (instances == 0)
             {
@@ -48,7 +54,7 @@ namespace Music_Turing_Machine
             }
             return null;
         }
-        public void putSource(char[] preSource)
+        public void PutSource(char[] preSource)
         {
             for (int i = 0; i < preSource.Length; i++)
             {
@@ -75,15 +81,10 @@ namespace Music_Turing_Machine
                 }
             }
         }
-        public char[] getSource()
-        {
-            return source.ToArray();
-        }
-        public void clear()
-        {
-            initiateEnvironment();
-        }
-        public void start(ref bool isAborted)
+        public char[] Source => source.ToArray();
+        public void Clear() => InitiateEnvironment();
+
+        public void Start(ref bool isAborted)
         {
             Sound temp;
             for (int srcCharCurrent = 0; srcCharCurrent != (int)source.LongCount(); srcCharCurrent++)
@@ -93,7 +94,7 @@ namespace Music_Turing_Machine
                 {
                     case (playT):
                     {
-                        tape[current].Play();
+                        tape[current].Play(outputDevice);
                         break;
                     }
                     case (toneUpT):
@@ -197,14 +198,17 @@ namespace Music_Turing_Machine
                     }
                 }
                 if (isAborted)
+                {
+                    outputDevice.Open();
                     break;
+                }
             }
         }
-        public void setDuration(int dur)
+        public void SetDuration(int dur)
         {
             foreach (Sound s in tape)
             {
-                s.setDuration(dur);
+                s.Duration = dur;
             }
         }
     }

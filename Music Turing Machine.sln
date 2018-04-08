@@ -1,7 +1,11 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Music Turing Machine", "Music Turing Machine\Music Turing Machine.csproj", "{3D1BC538-6197-4E17-BCBA-4E25D7FD81EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Midi", "Midi\Midi.csproj", "{F60D8B7B-2D2E-4B94-A736-3783FFE1A25C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,8 +17,15 @@ Global
 		{3D1BC538-6197-4E17-BCBA-4E25D7FD81EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D1BC538-6197-4E17-BCBA-4E25D7FD81EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D1BC538-6197-4E17-BCBA-4E25D7FD81EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F60D8B7B-2D2E-4B94-A736-3783FFE1A25C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F60D8B7B-2D2E-4B94-A736-3783FFE1A25C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F60D8B7B-2D2E-4B94-A736-3783FFE1A25C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F60D8B7B-2D2E-4B94-A736-3783FFE1A25C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {217C4112-C4F2-43C0-ABDD-6948423BC8E5}
 	EndGlobalSection
 EndGlobal

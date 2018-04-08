@@ -16,20 +16,20 @@ namespace Music_Turing_Machine
         public ProgramForm()
         {
             InitializeComponent();
-            env = RuntimeEnvironment.getInstance();
+            env = RuntimeEnvironment.GetInstance();
             isAborted = false;
         }
         private void buttonRun_Click(object sender, EventArgs e)
         {
             try
             {
-                env.clear();
+                env.Clear();
                 if (textBoxDuration.Text.Length != 0)
                 {
                     int dur = Convert.ToInt32(textBoxDuration.Text);
-                    env.setDuration(dur);
+                    env.SetDuration(dur);
                 }                          
-                env.putSource(textBoxEditor.Text.ToCharArray());
+                env.PutSource(textBoxEditor.Text.ToCharArray());
                 isAborted = false;
                 if (!backgroundWorker1.IsBusy)
                     backgroundWorker1.RunWorkerAsync();
@@ -46,7 +46,7 @@ namespace Music_Turing_Machine
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            env.start(ref isAborted);
+            env.Start(ref isAborted);
         }
 
         private void buttonAbort_Click(object sender, EventArgs e)

@@ -1,26 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Midi;
 
 namespace Music_Turing_Machine
 {
     abstract class Sound
     {
-        public static int DEFAULT_DUR = 500;
+        public static int DEFAULT_DUR = 200;
+
         protected int dur;
-        public abstract void Play();
-        public int getDuration()
-        {
-            return dur;
-        }
+        public int Duration { get => dur; set => dur = value; }
+
+        public abstract void Play(OutputDevice outputDevice);
         public abstract Sound ToneUp();
         public abstract Sound ToneDown();
         public abstract Sound OctaveUp();
         public abstract Sound OctaveDown();
-        public void setDuration(int d)
-        {
-            dur = d;
-        }
     }
 }
